@@ -20,6 +20,9 @@
         </a>
         <ul>
           <th:block th:if="${session.user==null}">
+            <a href="/persona/create">
+              <li class="navbar-link">Registro</li>
+            </a>
             <a href="/cliente/create">
               <li class="navbar-link">Sign Up</li>
             </a>

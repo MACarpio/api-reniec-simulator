@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" 
+    th:replace="~{fragments/layout :: layout (~{::body},'person')}">
+
+<body>
+
+    <form class="form"
+    th:object="${person}"
+    th:action="@{/persona/create}"
+    method="post">
+
+    <h1 class="title">Registrar Datos</h1>
+    <div class="form-data">
+        <label for="dni" class="form-label">DNI :</label>
+        <input
+          type="text"
+          placeholder="Ingrese su DNI"
+          th:field="*{dni}"
+          required
+        />
+      </div>
+      <div class="form-data">
+        <label for="name" class="form-label">Nombres Completos:</label>
+        <input
+          type="text"
+          placeholder="Ingrese sus Nombres"
+          th:field="*{name}"
+          required
+        />
+      </div>
+      <div class="form-data">
+        <label for="firstName" class="form-label">Apellido Paterno :</label>
+        <input
+          type="text"
+          placeholder="Ingrese el Apellido Pat."
+          th:field="*{firstName}"
+          required
+        />
+      </div>
+      <div class="form-data">
+        <label for="lastName" class="form-label">Apellido Materno :</label>
+        <input
+          type="text"
+          placeholder="Ingrese sus Apellidos Mat."
+          th:field="*{lastName}"
+          required
+        />
+      </div>
+      <div class="form-data">
+        <label for="address" class="form-label">Direccion :</label>
+        <input
+          type="text"
+          placeholder="Ingrese su Dirección"
+          th:field="*{address}"
+          required
+        />
+      </div>
+      <div class="form-data">
+        <label for="gender" class="form-label">Género :</label>
+        <div class="form-radio">
+          <div>
+            <input
+              type="radio"
+              id="genderM"
+              name="genderM"
+              value="Male"
+              th:field="*{gender}"
+              required
+            />
+            <label for="genderM" class="radio">Masculino</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="genderF"
+              name="genderF"
+              value="Female"
+              th:field="*{gender}"
+              required
+            />
+            <label for="genderF" class="radio">Femenino</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-data">
+        <label for="birthdate" class="form-label">Fecha Nacimiento :</label>
+        <input
+          type="text"
+          id="birthdate"
+          data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'"
+          autocomplete="off"
+          th:field="*{birthdate}"
+          required
+        />
+      </div>
+      <div class="form-data">
+        <label for="status" class="form-label">Estado Civil :</label>
+        <div class="form-radio">
+          <div>
+            <input
+              type="radio"
+              id="statusS"
+              name="statusS"
+              value="single"
+              th:field="*{status}"
+              required
+            />
+            <label for="statusS" class="radio">Soltero</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="statusC"
+              name="statusC"
+              value="married"
+              th:field="*{status}"
+              required
+            />
+            <label for="statusC" class="radio">Casado</label>
+          </div>
+        </div>
+        <div class="form-radio"> 
+          <div>
+            <input
+              type="radio"
+              id="statusV"
+              name="statusV"
+              value="widower"
+              th:field="*{status}"
+              required
+            />
+            <label for="statusV" class="radio">Viudo</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="statusO"
+              name="statusO"
+              value="others"
+              th:field="*{status}"
+              required
+            />
+            <label for="statusO" class="radio">otros</label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="form-btn">Enviar Datos</button>
+    </form>
+    <th:block th:if="${mensaje!=null}">
+        <th:block th:if="${mensaje==true}">
+            <p class="response-form-s" >
+                Enviado Exitoso !!! 👍
+            </p>
+        </th:block>
+        <th:block th:if="${mensaje==false}">
+            <p class="response-form-f" >
+                Enviado fallido !!! 👍
+            </p>
+        </th:block>
+    </th:block>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+    <script th:src="@{/webjars/jquery.inputmask/jquery.inputmask.min.js}"></script>    
+
+    <script>
+        $('.input-group.date').datepicker({
+          autoclose: true,
+          todayHighlight: true
+        });
+    </script>
+    <script>
+        $(":input").inputmask();
+    </script>
+</body>
+
+</html>
