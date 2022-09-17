@@ -13,29 +13,29 @@ import com.reniec.api.repository.PersonaRepository;
 
 @Controller
 public class PersonaController {
-    private static final String INDEX ="persona/create"; 
-    private static String MODEL_CONTACT="person";
+    private static final String INDEX = "persona/create";
+    private static String MODEL_CONTACT = "person";
     private final PersonaRepository personaData;
 
-    public PersonaController(PersonaRepository personaData){
+    public PersonaController(PersonaRepository personaData) {
         this.personaData = personaData;
-    }  
+    }
 
     @GetMapping("/persona/create")
     public String index(Model model) {
         model.addAttribute(MODEL_CONTACT, new Persona());
         return INDEX;
-    }  
+    }
 
     @PostMapping("/persona/create")
-    public String createSubmitForm(Model model, 
-        @Valid Persona objPersona, BindingResult result ){
-        if(result.hasFieldErrors()) {
-            model.addAttribute("mensaje", "No se envio datos");
-        }else{
+    public String createSubmitForm(Model model,
+            @Valid Persona objPersona, BindingResult result) {
+        if (result.hasFieldErrors()) {
+            model.addAttribute("mensaje", false);
+        } else {
             this.personaData.save(objPersona);
-            model.addAttribute(MODEL_CONTACT, objPersona);
-            model.addAttribute("mensaje", "Se envio datos");
+            model.addAttribute(MODEL_CONTACT, new Persona());
+            model.addAttribute("mensaje", true);
         }
         return INDEX;
     }

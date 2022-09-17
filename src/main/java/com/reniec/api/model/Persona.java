@@ -1,16 +1,12 @@
 package com.reniec.api.model;
 
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import lombok.*;
 
 @Getter
@@ -21,24 +17,14 @@ import lombok.*;
 @Table(name = "t_persona")
 public class Persona {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @NotNull
+    @Column(name = "dni")
     private String dni;
-    @NotNull
-    private String name;
-    @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName; 
-    @NotNull
-    private String address;
-    @NotNull
-    private String gender;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private String nombres;
+    private String ApePat;
+    private String ApeMat;
+    private String direc;
+    private String genero;
     private Date birthdate;
-    @NonNull
-    private String status; 
+    private String estado;
 
 }
-

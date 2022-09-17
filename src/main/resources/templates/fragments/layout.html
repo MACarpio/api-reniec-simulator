@@ -28,11 +28,11 @@
             </a>
           </th:block>
           <th:block th:if="${session.user!=null}">
-            <a href="/usuario/logout">
-              <li class="navbar-link">Log out</li>
-            </a>
             <a href="/persona/create">
               <li class="navbar-link">Registrar Datos</li>
+            </a>
+            <a href="/usuario/logout">
+              <li class="navbar-link">Log out</li>
             </a>
           </th:block>
         </ul>

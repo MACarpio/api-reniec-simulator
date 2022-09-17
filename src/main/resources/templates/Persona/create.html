@@ -1,63 +1,60 @@
 <!DOCTYPE html>
 
-<html xmlns:th="https://www.thymeleaf.org" 
-    th:replace="~{fragments/layout :: layout (~{::body},'person')}">
-
-<body>
-
-    <form class="form"
-    th:object="${person}"
-    th:action="@{/persona/create}"
-    method="post">
-
-    <h1 class="title">Registrar Datos</h1>
-    <div class="form-data">
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'person')}"
+>
+  <body>
+    <form
+      class="form"
+      th:object="${person}"
+      th:action="@{/persona/create}"
+      method="post"
+    >
+      <h1 class="title">Registrar Datos</h1>
+      <div class="form-data">
         <label for="dni" class="form-label">DNI :</label>
         <input
           type="text"
           placeholder="Ingrese su DNI"
           th:field="*{dni}"
-          required
+          maxlength="8"
         />
       </div>
       <div class="form-data">
-        <label for="name" class="form-label">Nombres Completos:</label>
+        <label for="nombres" class="form-label">Nombres Completos:</label>
         <input
           type="text"
           placeholder="Ingrese sus Nombres"
-          th:field="*{name}"
-          required
+          th:field="*{nombres}"
         />
       </div>
       <div class="form-data">
-        <label for="firstName" class="form-label">Apellido Paterno :</label>
+        <label for="ApePat" class="form-label">Apellido Paterno :</label>
         <input
           type="text"
           placeholder="Ingrese el Apellido Pat."
-          th:field="*{firstName}"
-          required
+          th:field="*{ApePat}"
         />
       </div>
       <div class="form-data">
-        <label for="lastName" class="form-label">Apellido Materno :</label>
+        <label for="ApeMat" class="form-label">Apellido Materno :</label>
         <input
           type="text"
           placeholder="Ingrese sus Apellidos Mat."
-          th:field="*{lastName}"
-          required
+          th:field="*{ApeMat}"
         />
       </div>
       <div class="form-data">
-        <label for="address" class="form-label">Direccion :</label>
+        <label for="direc" class="form-label">Direccion :</label>
         <input
           type="text"
           placeholder="Ingrese su Dirección"
-          th:field="*{address}"
-          required
+          th:field="*{direc}"
         />
       </div>
       <div class="form-data">
-        <label for="gender" class="form-label">Género :</label>
+        <label for="genero" class="form-label">Género :</label>
         <div class="form-radio">
           <div>
             <input
@@ -65,8 +62,7 @@
               id="genderM"
               name="genderM"
               value="Male"
-              th:field="*{gender}"
-              required
+              th:field="*{genero}"
             />
             <label for="genderM" class="radio">Masculino</label>
           </div>
@@ -76,8 +72,7 @@
               id="genderF"
               name="genderF"
               value="Female"
-              th:field="*{gender}"
-              required
+              th:field="*{genero}"
             />
             <label for="genderF" class="radio">Femenino</label>
           </div>
@@ -85,14 +80,7 @@
       </div>
       <div class="form-data">
         <label for="birthdate" class="form-label">Fecha Nacimiento :</label>
-        <input
-          type="text"
-          id="birthdate"
-          data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'"
-          autocomplete="off"
-          th:field="*{birthdate}"
-          required
-        />
+        <input type="date" id="birthdate" th:field="*{birthdate}" />
       </div>
       <div class="form-data">
         <label for="status" class="form-label">Estado Civil :</label>
@@ -103,8 +91,7 @@
               id="statusS"
               name="statusS"
               value="single"
-              th:field="*{status}"
-              required
+              th:field="*{estado}"
             />
             <label for="statusS" class="radio">Soltero</label>
           </div>
@@ -114,21 +101,19 @@
               id="statusC"
               name="statusC"
               value="married"
-              th:field="*{status}"
-              required
+              th:field="*{estado}"
             />
             <label for="statusC" class="radio">Casado</label>
           </div>
         </div>
-        <div class="form-radio"> 
+        <div class="form-radio">
           <div>
             <input
               type="radio"
               id="statusV"
               name="statusV"
               value="widower"
-              th:field="*{status}"
-              required
+              th:field="*{estado}"
             />
             <label for="statusV" class="radio">Viudo</label>
           </div>
@@ -138,8 +123,7 @@
               id="statusO"
               name="statusO"
               value="others"
-              th:field="*{status}"
-              required
+              th:field="*{estado}"
             />
             <label for="statusO" class="radio">otros</label>
           </div>
@@ -148,32 +132,12 @@
       <button type="submit" class="form-btn">Enviar Datos</button>
     </form>
     <th:block th:if="${mensaje!=null}">
-        <th:block th:if="${mensaje==true}">
-            <p class="response-form-s" >
-                Enviado Exitoso !!! 👍
-            </p>
-        </th:block>
-        <th:block th:if="${mensaje==false}">
-            <p class="response-form-f" >
-                Enviado fallido !!! 👍
-            </p>
-        </th:block>
+      <th:block th:if="${mensaje==true}">
+        <p class="response-form-s">Enviado Exitoso !!! 👍</p>
+      </th:block>
+      <th:block th:if="${mensaje==false}">
+        <p class="response-form-f">Enviado fallido !!! 👍</p>
+      </th:block>
     </th:block>
-
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
-    <script th:src="@{/webjars/jquery.inputmask/jquery.inputmask.min.js}"></script>    
-
-    <script>
-        $('.input-group.date').datepicker({
-          autoclose: true,
-          todayHighlight: true
-        });
-    </script>
-    <script>
-        $(":input").inputmask();
-    </script>
-</body>
-
+  </body>
 </html>
