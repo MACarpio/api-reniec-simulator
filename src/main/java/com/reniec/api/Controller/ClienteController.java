@@ -16,37 +16,36 @@ import javax.validation.Valid;
 
 @Controller
 public class ClienteController {
-    private static final String INDEX ="cliente/create"; 
-    private static String MODEL_CONTACT="client";
+    private static final String INDEX = "cliente/create";
+    private static String MODEL_CONTACT = "client";
     private final ClienteRepository clientsData;
     private final UsuarioRepository usuariosData;
 
     public ClienteController(ClienteRepository clientsData,
-        UsuarioRepository usuariosData    
-        ){
+            UsuarioRepository usuariosData) {
         this.clientsData = clientsData;
         this.usuariosData = usuariosData;
-    }      
+    }
 
     @GetMapping("/cliente/create")
     public String index(Model model) {
         model.addAttribute(MODEL_CONTACT, new Cliente());
         return INDEX;
-    } 
+    }
 
     @PostMapping("/cliente/create")
-    public String createSubmitForm(Model model, 
-        @Valid Cliente objCliente, BindingResult result ){
-        if(result.hasFieldErrors()) {
-            model.addAttribute("mensaje", "No se registro un cliente");
-        }else{
+    public String createSubmitForm(Model model,
+            @Valid Cliente objCliente, BindingResult result) {
+        if (result.hasFieldErrors()) {
+            model.addAttribute("mensaje", false);
+        } else {
             Usuario user = objCliente.getUser();
             user.setTipoUsuario("C");
             this.usuariosData.save(user);
             this.usuariosData.flush();
             this.clientsData.save(objCliente);
             model.addAttribute(MODEL_CONTACT, objCliente);
-            model.addAttribute("mensaje", "Se registro un cliente");
+            model.addAttribute("mensaje", true);
         }
         return INDEX;
     }

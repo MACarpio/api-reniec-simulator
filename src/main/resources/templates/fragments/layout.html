@@ -1,67 +1,53 @@
 <!DOCTYPE html>
 <html th:fragment="layout (template, menu)">
-
-<head>
-
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min-jsf.css}" />
-  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap-jsf.css}" />
-  <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
-  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap-datepicker/css/bootstrap-datepicker.css}" />
-  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}" />
-  <link th:rel="stylesheet" th:href="@{/resources/css/w3.css}" />
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">RENIEC</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-
-          </ul>  
-          
-          <ul class="nav navbar-nav navbar-right">
-            <th:block th:if="${session.user==null}">
-              <li class="nav-item"><a href="/cliente/create"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-              <li class="nav-item"><a href="/usuario/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-            </th:block>   
-            <th:block th:if="${session.user!=null}">
-              <li class="nav-item"><a href="/usuario/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
-            </th:block>                     
-          </ul>   
-
-        </div>
-    </nav> 
-
-    <div class="container-fluid">
-      <div class="container xd-container">
-
-        <th:block th:include="${template}" />
-
-        <div class="container">
-          <div class="row">
-            <div class="col-12 text-center">
-              Copyright @ 2022 RENIEC-USMP
-          </div>
-        </div>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://kit.fontawesome.com/40d89d1195.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/estilo.css" />
+  </head>
+  <body>
+    <section class="navbar">
+      <div class="container">
+        <a href="/" class="navbar-icon">
+          <i class="fa-regular fa-address-card"></i> Reniec
+          <span class="navbar-icon">API</span>
+        </a>
+        <ul>
+          <th:block th:if="${session.user==null}">
+            <a href="/cliente/create">
+              <li class="navbar-link">Sign Up</li>
+            </a>
+            <a href="/usuario/login">
+              <li class="navbar-link">Log in</li>
+            </a>
+          </th:block>
+          <th:block th:if="${session.user!=null}">
+            <a href="/usuario/logout">
+              <li class="navbar-link">Log out</li>
+            </a>
+          </th:block>
+        </ul>
       </div>
-    </div>
+    </section>
+    <section class="main">
+      <div class="container">
+        <th:block th:include="${template}" />
+      </div>
+    </section>
 
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
-    <script th:src="@{/webjars/jquery.inputmask/jquery.inputmask.min.js}"></script>    
-
+    <section class="footer">
+      <div class="container">
+        <h1>
+          <i class="fa-solid fa-robot"></i> Tu salud es primero, cumple con los
+          protocolos
+        </h1>
+      </div>
+    </section>
   </body>
-
-  </html>
+</html>
