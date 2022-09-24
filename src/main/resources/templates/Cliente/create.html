@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'client')}"
+>
+  <body>
+    <form
+          class="form"
+          th:object="${client}"
+          th:action="@{/cliente/create}"
+          method="post"
+        >
+          <h1 class="title">Registrar Usuario</h1>
+          <div class="form-data">
+            <label for="firstName" class="form-label">Nombres :</label>
+            <input
+              type="text"
+              placeholder="Ingrese sus Nombres"
+              th:field="*{firstName}"
+              required
+            />
+          </div>
+          <div class="form-data">
+            <label for="lastName" class="form-label">Apelidos :</label>
+            <input
+              type="text"
+              placeholder="Ingrese sus Apellidos"
+              th:field="*{lastName}"
+              required
+            />
+          </div>
+          <div class="form-data">
+            <label for="email" class="form-label">Email :</label>
+            <input
+              type="email"
+              placeholder="Ingrese sus correo"
+              autocomplete="off"
+              th:field="*{email}"
+              required
+            />
+          </div>
+          <div class="form-data">
+            <label for="sector" class="form-label">Sector :</label>
+            <input
+              type="text"
+              placeholder="Ingrese sus Sector"
+              th:field="*{sector}"
+              required
+            />
+          </div>
+          <div class="form-data">
+            <label for="birthdate" class="form-label">Fecha Nacimiento :</label>
+            <input
+              type="text"
+              id="birthdate"
+              data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'"
+              autocomplete="off"
+              th:field="*{birthdate}"
+              required
+            />
+          </div>
+          <div class="form-data">
+            <label for="gender" class="form-label">Género :</label>
+            <div class="form-radio">
+              <div>
+                <input
+                  type="radio"
+                  id="genderM"
+                  name="genderM"
+                  value="Male"
+                  th:field="*{gender}"
+                  required
+                />
+                <label for="genderM" class="radio">Masculino</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="genderF"
+                  name="genderF"
+                  value="Female"
+                  th:field="*{gender}"
+                  required
+                />
+                <label for="genderF" class="radio">Femenino</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-data">
+            <label for="user.userID" class="form-label">Usuario :</label>
+            <input
+              type="text"
+              placeholder="Ingrese su Usuario"
+              th:field="*{user.userID}"
+              required
+            />
+          </div>
+          <div class="form-data">
+            <label for="user.password" class="form-label">Contraseña :</label>
+            <input
+              type="password"
+              placeholder="Ingrese su Contraseña"
+              th:field="*{user.password}"
+              required
+            />
+          </div>
+          <button type="submit" class="form-btn">Registrar</button>
+        </form>
+        <th:block th:if="${mensaje!=null}">
+          <th:block th:if="${mensaje==true}">
+            <p class="response-form-s" >
+              Registro Exitoso !!! 👍
+            </p>
+          </th:block>
+          <th:block th:if="${mensaje==false}">
+            <p class="response-form-f" >
+              Registro fallido !!! 👍
+            </p>
+          </th:block>
+        </th:block>
+        
+      </div>
+      <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+      <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+      <script
+        th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"
+      ></script>
+      <script
+        th:src="@{/webjars/jquery.inputmask/jquery.inputmask.min.js}"
+      ></script>
+
+      <script>
+        $(".input-group.date").datepicker({
+          autoclose: true,
+          todayHighlight: true,
+        });
+      </script>
+      <script>
+        $(":input").inputmask();
+      </script>
+  </body>
+</html>

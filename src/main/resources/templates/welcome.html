@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'home')}"
+>
+  <body>
+    <form class="form">
+      <h1 class="title">Buscar DNI</h1>
+      <div class="form-data">
+        <label for="dni" class="form-label">DNI :</label>
+        <input type="text" placeholder="Ingrese su DNI" />
+      </div>
+      <button type="submit" class="form-btn">Buscar</button>
+    </form>
+  </body>
+</html>
