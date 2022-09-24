@@ -13,7 +13,7 @@ import com.reniec.api.repository.PersonaRepository;
 
 @Controller
 public class PersonaController {
-    private static final String INDEX = "persona/create";
+    private static final String INDEX = "Persona/create";
     private static String MODEL_CONTACT = "person";
     private final PersonaRepository personaData;
 
@@ -21,13 +21,13 @@ public class PersonaController {
         this.personaData = personaData;
     }
 
-    @GetMapping("/persona/create")
+    @GetMapping("/Persona/create")
     public String index(Model model) {
         model.addAttribute(MODEL_CONTACT, new Persona());
         return INDEX;
     }
 
-    @PostMapping("/persona/create")
+    @PostMapping("/Persona/create")
     public String createSubmitForm(Model model,
             @Valid Persona objPersona, BindingResult result) {
         if (result.hasFieldErrors()) {
