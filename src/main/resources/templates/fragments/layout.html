@@ -20,7 +20,7 @@
         </a>
         <ul>
           <th:block th:if="${session.user==null}">
-            <a href="/cliente/create">
+            <a href="/Cliente/create">
               <li class="navbar-link">Sign Up</li>
             </a>
             <a href="/usuario/login">
@@ -28,7 +28,7 @@
             </a>
           </th:block>
           <th:block th:if="${session.user!=null}">
-            <a href="/persona/create">
+            <a href="/Persona/create">
               <li class="navbar-link">Registrar Datos</li>
             </a>
             <a href="/usuario/logout">
