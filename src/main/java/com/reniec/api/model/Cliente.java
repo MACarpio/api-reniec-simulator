@@ -29,11 +29,11 @@ public class Cliente {
     private String email;
     private String sector;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date birthdate; 
+    private Date birthdate;
     private String gender;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Usuario user;  
-    
+    private Usuario user;
+
 }
