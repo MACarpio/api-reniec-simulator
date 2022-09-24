@@ -37,14 +37,14 @@ public class PersonaREST {
     }
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> create(@RequestBody Persona e) {
-        personaData.save(e);
+    public ResponseEntity<String> createPersona(@RequestBody Persona persona) {
+        personaData.save(persona);
         personaData.flush();
-        return new ResponseEntity<String>(e.getDni(), HttpStatus.CREATED);
+        return new ResponseEntity<String>(persona.getDni(), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{dni}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Persona> Productos(@PathVariable String dni) {
+    public ResponseEntity<Persona> getPersona(@PathVariable String dni) {
         Optional<Persona> optinalEntity = personaData.findById(dni);
         if (optinalEntity.isPresent())
             return new ResponseEntity<Persona>(
@@ -54,8 +54,23 @@ public class PersonaREST {
     }
 
     @DeleteMapping(value = "/{dni}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity delete(@PathVariable String dni) {
+    public ResponseEntity deletePersona(@PathVariable String dni) {
         personaData.deleteById(dni);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/{dni}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updatePersona(@PathVariable String dni, @RequestBody Persona persona) {
+        Persona obj = new Persona();
+        obj.setDni(dni);
+        obj.setNombres(persona.getNombres());
+        obj.setApePat(persona.getApePat());
+        obj.setApeMat(persona.getApeMat());
+        obj.setDirec(persona.getDirec());
+        obj.setGenero(persona.getGenero());
+        obj.setBirthdate(persona.getBirthdate());
+        obj.setEstado(persona.getEstado());
+        personaData.save(obj);
         return new ResponseEntity(HttpStatus.OK);
     }
 
