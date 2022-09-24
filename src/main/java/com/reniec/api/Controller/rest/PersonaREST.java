@@ -26,37 +26,37 @@ import java.util.*;
 public class PersonaREST {
     private final PersonaRepository personaData;
 
-    public PersonaREST(PersonaRepository personaData){
+    public PersonaREST(PersonaRepository personaData) {
         this.personaData = personaData;
-    } 
+    }
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Persona>> productos(){
-        return  new ResponseEntity<List<Persona>>(
-            personaData.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Persona>> getPersonas() {
+        return new ResponseEntity<List<Persona>>(
+                personaData.findAll(), HttpStatus.OK);
     }
 
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> create(@RequestBody Persona e){
+    public ResponseEntity<String> create(@RequestBody Persona e) {
         personaData.save(e);
         personaData.flush();
-        return new ResponseEntity<String>(e.getDni(),HttpStatus.CREATED);
+        return new ResponseEntity<String>(e.getDni(), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{dni}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Persona> Productos(@PathVariable String dni){
-        Optional<Persona> optinalEntity = personaData.findById(dni); 
-        if(optinalEntity.isPresent())
+    public ResponseEntity<Persona> Productos(@PathVariable String dni) {
+        Optional<Persona> optinalEntity = personaData.findById(dni);
+        if (optinalEntity.isPresent())
             return new ResponseEntity<Persona>(
-                optinalEntity.get(), HttpStatus.OK);
+                    optinalEntity.get(), HttpStatus.OK);
         else
             return new ResponseEntity<Persona>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping(value = "/{dni}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity delete(@PathVariable String dni){
+    public ResponseEntity delete(@PathVariable String dni) {
         personaData.deleteById(dni);
         return new ResponseEntity(HttpStatus.OK);
-    }   
+    }
 
 }
