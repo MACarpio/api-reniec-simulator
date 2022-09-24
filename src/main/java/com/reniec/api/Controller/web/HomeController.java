@@ -1,4 +1,4 @@
-package com.reniec.api.Controller;
+package com.reniec.api.Controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
