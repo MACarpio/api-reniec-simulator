@@ -210,3 +210,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-weight: 600;
   backdrop-filter: blur(10px);
 }
+.searchDni {
+  width: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.dataSearch {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.dataSearch h1 {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.dataSearch :nth-child(1) {
+  justify-content: right;
+  color: #00d3a1;
+}
+.dataSearch :nth-child(2) {
+  justify-content: left;
+}
+.searchDni::after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 2px;
+  background-color: #00d3a1;
+}

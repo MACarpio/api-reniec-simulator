@@ -5,13 +5,52 @@
   th:replace="~{fragments/layout :: layout (~{::body},'home')}"
 >
   <body>
-    <form class="form">
+    <form class="form" th:action="@{/}" method="post">
       <h1 class="title">Buscar DNI</h1>
       <div class="form-data">
         <label for="dni" class="form-label">DNI :</label>
-        <input type="text" placeholder="Ingrese su DNI" />
+        <input type="text" name="dni" placeholder="Ingrese su DNI" />
       </div>
       <button type="submit" class="form-btn">Buscar</button>
     </form>
+    <div class="searchDni">
+      <div class="dataSearch">
+        <h1 for="">Nombre :</h1>
+        <h1 th:text="${persona.getNombres()}"></h1>
+      </div>
+      <div class="dataSearch">
+        <h1 for="">Apellido Paterno:</h1>
+        <h1 th:text="${persona.getApePat()}"></h1>
+      </div>
+      <div class="dataSearch">
+        <h1 for="">Apellido Materno:</h1>
+        <h1 th:text="${persona.getApeMat()}"></h1>
+      </div>
+      <div class="dataSearch">
+        <h1 for="">Dirección:</h1>
+        <h1 th:text="${persona.getDirec()}"></h1>
+      </div>
+      <div class="dataSearch">
+        <h1 for="">Genero:</h1>
+        <h1 th:text="${persona.getGenero()}"></h1>
+      </div>
+      <div class="dataSearch">
+        <h1 for="">Fec. Nacimiento:</h1>
+        <h1 th:text="${persona.getBirthdate()}"></h1>
+      </div>
+      <div class="dataSearch">
+        <h1 for="">Estado:</h1>
+        <h1 th:text="${persona.getEstado()}"></h1>
+      </div>
+    </div>
+
+    <th:block th:if="${mensaje!=null}">
+      <th:block th:if="${mensaje==true}">
+        <p class="response-form-s">DNI Encontrado !!! 👍</p>
+      </th:block>
+      <th:block th:if="${mensaje==false}">
+        <p class="response-form-f">DNI No registrado !!! 👎</p>
+      </th:block>
+    </th:block>
   </body>
 </html>
