@@ -129,6 +129,23 @@
           </div>
         </div>
       </div>
+      <div class="form-data">
+        <label for="Ubigeo" class="form-label">Ubigeo :</label>
+        <input
+          type="text"
+          placeholder="Ingrese el ubigeo de su DNI"
+          th:field="*{Ubigeo}"
+        />
+      </div>
+      <div class="form-data">
+        <label for="birthdate" class="form-label">Fecha de Emision :</label>
+        <input type="date" id="FecEmision" th:field="*{FecEmision}" />
+      </div>
+      <div class="form-data">
+        <label for="birthdate" class="form-label">Fecha de Caducidad :</label>
+        <input type="date" id="FecCaduc" th:field="*{FecCaduc}" />
+      </div>
+
       <button type="submit" class="form-btn">Enviar Datos</button>
     </form>
     <th:block th:if="${mensaje!=null}">

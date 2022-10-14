@@ -26,5 +26,7 @@ public class Persona {
     private String genero;
     private Date birthdate;
     private String estado;
-
+    private String Ubigeo;
+    private Date FecEmision;
+    private Date FecCaduc;
 }
