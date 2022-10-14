@@ -42,6 +42,18 @@
         <h1 for="">Estado:</h1>
         <h1 th:text="${persona.getEstado()}"></h1>
       </div>
+      <div class="dataSearch">
+        <h1 for="">Ubigeo:</h1>
+        <h1 th:text="${persona.getUbigeo()}"></h1>
+      </div>
+      <div class="dataSearch">
+        <h1 for="">Fecha de Emision:</h1>
+        <h1 th:text="${persona.getFecEmision()}"></h1>
+      </div>
+      <div class="dataSearch">
+        <h1 for="">Fecha de Caducidad:</h1>
+        <h1 th:text="${persona.getFecCaduc()}"></h1>
+      </div>
     </div>
 
     <th:block th:if="${mensaje!=null}">
