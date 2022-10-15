@@ -30,7 +30,9 @@
       </div>
       <button type="submit" class="form-btn">Ingresar</button>
     </form>
-    <p th:text="${mensaje}" />
+    <th:block th:if="${mensaje!=null}">
+      <p th:text="${mensaje}" class="response-form-f" />
+    </th:block>
 
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
