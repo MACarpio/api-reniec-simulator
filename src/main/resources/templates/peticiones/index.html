@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'peticiones')}"
+>
+  <body>
+    <h1>Peticiones por Usuario</h1>
+    <div class="Container-cards">
+      <th:block th:if="${user!=null}">
+        <div th:each="single: ${list}" class="Card">
+          <div class="Card-body">
+            <h1 th:text="${single[0]}" class="Card-user">User</h1>
+            <h2 th:text="${single[1]}" class="Card-count">Cantidad</h2>
+          </div>
+        </div>
+      </th:block>
+      <th:block th:if="${user==null}">
+        <p class="response-form-f">Loguearse porfavor !!! 👎</p>
+      </th:block>
+    </div>
+  </body>
+</html>

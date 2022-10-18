@@ -20,6 +20,9 @@
         </a>
         <ul>
           <th:block th:if="${session.user==null}">
+            <a href="/peticiones/">
+              <li class="navbar-link">Peticiones</li>
+            </a>
             <a href="/Cliente/create">
               <li class="navbar-link">Sign Up</li>
             </a>
@@ -28,6 +31,9 @@
             </a>
           </th:block>
           <th:block th:if="${session.user!=null}">
+            <a href="/peticiones/">
+              <li class="navbar-link">Peticiones</li>
+            </a>
             <a href="/token/">
               <li class="navbar-link">Ver Token</li>
             </a>
