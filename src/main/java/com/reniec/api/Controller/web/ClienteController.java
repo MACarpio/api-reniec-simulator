@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @Controller
 public class ClienteController {
@@ -41,6 +42,7 @@ public class ClienteController {
         } else {
             Usuario user = objCliente.getUser();
             user.setTipoUsuario("C");
+            user.setToken(UUID.randomUUID().toString());
             this.usuariosData.save(user);
             this.usuariosData.flush();
             this.clientsData.save(objCliente);

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'token')}"
+>
+  <body>
+    <h1>Token</h1>
+    <p th:text="${token}" />
+  </body>
+</html>
