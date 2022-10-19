@@ -54,10 +54,15 @@
     </section>
     <section class="footer">
       <div class="container">
-        <h1>
-          <i class="fa-solid fa-robot"></i> Tu salud es primero, cumple con los
-          protocolos
-        </h1>
+        <div class="mensaje">
+          <h1>
+            <i class="fa-solid fa-robot"></i> Tu salud es primero, cumple con
+            los protocolos
+          </h1>
+        </div>
+        <div class="user">
+          <h1 th:text="${session.user}"></h1>
+        </div>
       </div>
     </section>
   </body>
