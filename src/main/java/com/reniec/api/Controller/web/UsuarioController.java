@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.reniec.api.model.Usuario;
@@ -44,13 +45,17 @@ public class UsuarioController {
             Optional<Usuario> userDB = this.usuariosData.findById(objUser.getUserID());
 
             if (userDB.isPresent()) {
-                if (userDB.get().getPassword().equals(objUser.getPassword())) {
-                    model.addAttribute(MODEL_CONTACT, userDB.get());
-                    model.addAttribute(MODEL_MESSAGE, "Usuario existe");
-                    request.getSession().setAttribute("user", objUser.getUserID());
-                    page = "redirect:/";
+                if (userDB.get().getVerify()) {
+                    if (userDB.get().getPassword().equals(objUser.getPassword())) {
+                        model.addAttribute(MODEL_CONTACT, userDB.get());
+                        model.addAttribute(MODEL_MESSAGE, "Usuario existe");
+                        request.getSession().setAttribute("user", objUser.getUserID());
+                        page = "redirect:/";
+                    } else {
+                        model.addAttribute(MODEL_MESSAGE, "Password no coincide");
+                    }
                 } else {
-                    model.addAttribute(MODEL_MESSAGE, "Password no coincide");
+                    model.addAttribute(MODEL_MESSAGE, "Usuario no verificado");
                 }
             } else {
                 model.addAttribute(MODEL_MESSAGE, "Usuario no existe");
@@ -63,5 +68,18 @@ public class UsuarioController {
     public String logoutSession(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/";
+    }
+
+    @GetMapping("/usuario/{token}")
+    public String verifyToken(Model model, @PathVariable String token) {
+        Optional<Usuario> userDB = this.usuariosData.findUsuarioByToken(token);
+        if (userDB.isPresent()) {
+            userDB.get().setVerify(true);
+            this.usuariosData.save(userDB.get());
+            model.addAttribute("mensaje", true);
+        } else {
+            model.addAttribute("mensaje", false);
+        }
+        return "usuario/verify";
     }
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'verify')}"
+>
+  <body>
+    <th:block th:if="${mensaje!=null}">
+      <th:block th:if="${mensaje==true}">
+        <p class="response-form-s">Usuario Verificado !!! 👍</p>
+      </th:block>
+      <th:block th:if="${mensaje==false}">
+        <p class="response-form-f">No Existe el Usuario !!! 👎</p>
+      </th:block>
+    </th:block>
+  </body>
+</html>
