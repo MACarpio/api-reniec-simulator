@@ -13,31 +13,21 @@
       </div>
       <button type="submit" class="form-btn">Buscar</button>
     </form>
+    <br />
     <h1 class="title">Peticiones por Usuario</h1>
     <div class="Container-cards">
       <th:block th:if="${user!=null}">
-        <div th:each="single: ${list}" class="Card">
+        <div th:each="single: ${listdni}" class="Card">
           <div class="Card-body">
             <h1 th:text="${single[0]}" class="Card-user">User</h1>
             <h2 th:text="${single[1]}" class="Card-count">Cantidad</h2>
           </div>
         </div>
       </th:block>
+
       <th:block th:if="${user==null}">
         <p class="response-form-f">Loguearse porfavor !!! 👎</p>
       </th:block>
     </div>
-    <h1 class="title">Tipos de peticiones</h1>
-    <div class="Container-cards">
-      <th:block th:if="${user!=null}">
-        <div th:each="single: ${listType}" class="Card">
-          <div class="Card-body">
-            <h1 th:text="${single[0]}" class="Card-user">Type</h1>
-            <h2 th:text="${single[1]}" class="Card-count">Cantidad</h2>
-          </div>
-        </div>
-      </th:block>
-    </div>
-    <br /><br />
   </body>
 </html>
